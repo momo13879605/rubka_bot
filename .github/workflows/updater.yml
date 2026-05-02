@@ -1,1 +1,35 @@
+name: Rubika Bot
 
+on:
+  schedule:
+    - cron: '*/5 * * * *'   
+  workflow_dispatch:
+
+concurrency: rubika_bot
+
+jobs:
+  poll:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run bot
+        env:
+          RUBIKA_BOT_TOKEN: ${{ secrets.RUBIKA_BOT_TOKEN }}
+          RUBIKA_CHANNEL_ID: ${{ secrets.RUBIKA_CHANNEL_ID }}
+        run: python rubika_bot.py
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --staged --quiet || git commit -m "🤖 Auto update & keepalive"
+          git push
