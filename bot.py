@@ -22,8 +22,8 @@ SENT_FILES_FILE = "sent_files.json"
 OFFSET_FILE = "rubika_offset.txt"
 LAST_SCRAPE_FILE = "last_scrape.txt"
 
-RUBIKA_TOKEN = os.environ["BDACCD0EFPPZBPHLCZWTAIBTCNAVJMBULCAWRZOVWZIUAUZIMULPOPVWSDJSLVBX"]
-CHANNEL_ID = os.environ["c0D8UIf0c4e5224e5e19123f699e7e40"]  # آیدی عددی کانال
+RUBIKA_TOKEN = os.environ["RUBIKA_BOT_TOKEN"]
+CHANNEL_ID = os.environ["RUBIKA_CHANNEL_ID"]
 
 BASE_TELEGRAM = "https://t.me/s/"
 API_BASE = f"https://botapi.rubika.ir/v3/{RUBIKA_TOKEN}"
